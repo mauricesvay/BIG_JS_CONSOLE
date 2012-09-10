@@ -80,7 +80,7 @@ function pp(object, depth, embedded) {
             }
             var content = ""
             for (var item in object) {
-                content += pp(item, depth + 1) + ",\n" + spacer(depth + 1)
+                content += pp(object[item], depth + 1) + ",\n" + spacer(depth + 1)
             }
             content = content.replace(/,\n\s*$/, "").replace(/^\s*/, "")
             pretty += "[ " + content + "\n" + spacer(depth) + "]"
@@ -123,7 +123,7 @@ $(function(){
             oldConsoleLog.call(this, args);
             for (var i = 0; i < args.length; i++) {
                 $console
-                    .text(($console.text() ? $console.text() : '') + pp(args[i]) + "\n")
+                    .text(($console.text() ? $console.text() : '') + pp(args[i]) + "\n", 10, false)
                     .scrollTop($console[0].scrollHeight - $console.height());
             }
         }
